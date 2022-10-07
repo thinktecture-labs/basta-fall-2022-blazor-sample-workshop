@@ -1,0 +1,29 @@
+﻿@page "/conferences/{mode}/{id:guid}"
+@page "/conferences/{mode}"
+
+<ErrorBoundary>
+    <ChildContent>
+        @if (conf != null)
+        {
+            <EditForm Model="conf" OnValidSubmit="OnSubmit">
+                <DataAnnotationsValidator />
+                <FluentValidationValidator />
+                <ValidationSummary></ValidationSummary>
+                <MudTextField Disabled="onlyShow" Placeholder="Title" @bind-Value="conf.Title"></MudTextField>
+                <MudTextField Disabled="onlyShow" Placeholder="City" @bind-Value="conf.City"></MudTextField>
+                <MudTextField Disabled="onlyShow" Placeholder="Country" @bind-Value="conf.Country"></MudTextField>
+                <MudDatePicker Disabled="onlyShow" @bind-Date="conf.DateFrom" Placeholder="Datum von:"></MudDatePicker>
+                <MudDatePicker Disabled="onlyShow" @bind-Date="conf.DateTo" Placeholder="Datum bis:"></MudDatePicker>
+                <div class="actions">
+                    <MudButton OnClick="GoBack">Zurück</MudButton>
+                    <MudButton Disabled="onlyShow" ButtonType="ButtonType.Submit">Speichern</MudButton>
+                </div>
+            </EditForm>
+        }
+    </ChildContent>
+    <ErrorContent>
+        <p>Die Konferenz ist Fehlerhaft</p>
+    </ErrorContent>
+</ErrorBoundary>
+
+

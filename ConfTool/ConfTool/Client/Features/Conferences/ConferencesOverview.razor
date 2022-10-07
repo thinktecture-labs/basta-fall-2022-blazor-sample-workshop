@@ -1,0 +1,44 @@
+﻿@page "/conferences"
+@using ConfTool.Client.Features.Conferences.Utils
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Confernces</PageTitle>
+
+@if (isLoading)
+{
+    <p>Loading...</p>
+}
+else if (conferenceOverviews == null)
+{
+    <p>Es wurden keinen Konferenzen gefunden</p>
+}
+else
+{
+    <table class="full-width">
+        <colgroup>
+            <col />
+            <col width="200px;" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th style="text-align: left">Title</th>
+                <th style="text-align: right">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <Virtualize Items="conferenceOverviews" Context="conf">
+                <tr style="@(newAddedId == conf.ID ? "background-color: green;" : "")">
+                    <td>@conf.Title</td>
+                    <td style="text-align: right">
+                                <MudIconButton Icon="@Icons.Material.Filled.Edit" OnClick="() => OpenDetails(ConferenceMode.Edit, conf.ID)"></MudIconButton>
+                        <MudIconButton Icon="@Icons.Material.Filled.RemoveRedEye" OnClick="() => OpenDetails(ConferenceMode.Show, conf.ID)"></MudIconButton>
+                    </td>
+                </tr>
+            </Virtualize>
+        </tbody>
+    </table>
+}
+
+<MudFab Style="position: fixed; right: 1rem; bottom: 1rem;" Size="Size.Small" Color="Color.Secondary" Icon="@Icons.Material.Filled.Add" OnClick="() => OpenDetails(ConferenceMode.Add)"></MudFab>
+

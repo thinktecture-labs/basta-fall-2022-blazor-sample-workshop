@@ -1,0 +1,11 @@
+﻿<AuthorizeView>
+    <Authorized>
+        <MudText Typo="Typo.body1">Hello, @context.User.Identity.Name!</MudText>
+        <MudIconButton Icon="@Icons.Material.Filled.Logout" Class="ml-4" OnClick="BeginSignOut">Log out</MudIconButton>
+    </Authorized>
+    <NotAuthorized>
+        <a href="authentication/login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+

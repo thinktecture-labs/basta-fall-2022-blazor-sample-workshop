@@ -1,0 +1,17 @@
+﻿<div class="camera">
+    <video id="@_options.VideoId">
+    </video>
+</div>
+
+<div class="output">
+    <img id="@_options.PhotoId"
+         alt="">
+</div>
+
+<div>
+    <button class="btn btn-primary" @onclick="StartVideoAsync">Start video</button>
+    <button class="btn btn-primary" @onclick="TakePictureAsync">Take picture</button>
+</div>
+
+<canvas id="@_options.CanvasId">
+</canvas>
